@@ -6,7 +6,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const pageTitle = document.getElementById('page-title');
     const pageBodyText = document.querySelector('.page-body p'); // The description area
     const newChatBtn = document.getElementById('new-chat-btn');
+// --- SEARCH FILTER LOGIC ---
+const searchInput = document.getElementById('search-input');
 
+searchInput.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase(); // What the user typed
+    const buttons = document.querySelectorAll('.sop-card-btn'); // All 200 buttons
+
+    buttons.forEach(btn => {
+        const btnText = btn.innerText.toLowerCase();
+        
+        // If the button text contains the search term, show it. Otherwise, hide it.
+        if (btnText.includes(term)) {
+            btn.style.display = "flex"; // Shows the button
+        } else {
+            btn.style.display = "none"; // Hides the button
+        }
+    });
+});
     // 2. DATA AREA: DEFINE YOUR SPECIFIC SOPs HERE
     // You can add more names and texts here as needed.
     const sopDatabase = {
@@ -17,46 +34,40 @@ document.addEventListener("DOMContentLoaded", () => {
         // The rest (5 to 200) will automatically become "SOP Module X"
     };
 
-    // 3. LOGIC: GENERATE 200 BUTTONS
+   // GENERATE 200 BUTTONS
     for (let i = 1; i <= 200; i++) {
         const button = document.createElement('button');
         button.className = 'sop-card-btn';
-
-        // Get the name from our Database, or use default "SOP Module i"
-        const currentSop = sopDatabase[i] || { 
-            name: `SOP Module ${i}`, 
-            content: `This is the default professional workspace for Module ${i}.` 
-        };
-
+        const currentSop = sopDatabase[i] || { name: `SOP Module ${i}`, content: `Content for ${i}` };
         button.innerText = currentSop.name;
 
-        // 4. CLICK LOGIC: WHAT HAPPENS WHEN YOU CLICK A BUTTON
         button.onclick = () => {
-            // Update the Sub-Page with the specific data
+            // Push state for back button support
+            history.pushState({ view: 'sub' }, '', ''); 
+            
             pageTitle.innerText = currentSop.name;
-            pageBodyText.innerHTML = `<strong>Official Procedure:</strong><br><br>${currentSop.content}`;
-
-            // Switch views (Hide Main, Show Sub-page)
+            pageBodyText.innerHTML = currentSop.content;
             mainPage.classList.add('hidden');
             subPage.classList.remove('hidden');
-            
-            // Scroll to top so the user sees the title
             window.scrollTo(0, 0);
         };
-
-        // Add the button to the grid
         grid.appendChild(button);
     }
 
-    // 5. "START NEW CHAT" LOGIC (BACK TO MAIN PAGE)
-    newChatBtn.onclick = () => {
-        // Switch views back (Hide Sub-page, Show Main)
+    // SEARCH LOGIC
+    searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        document.querySelectorAll('.sop-card-btn').forEach(btn => {
+            btn.style.display = btn.innerText.toLowerCase().includes(term) ? "flex" : "none";
+        });
+    });
+
+    // BACK BUTTON LOGIC
+    window.addEventListener('popstate', () => {
         subPage.classList.add('hidden');
         mainPage.classList.remove('hidden');
-        
-        // Return to top of the grid
         window.scrollTo(0, 0);
-        
-        console.log("System Reset: Returned to Main Dashboard");
-    };
+    });
+
+    newChatBtn.onclick = () => window.history.back();
 });
