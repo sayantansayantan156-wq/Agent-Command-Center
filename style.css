@@ -1,0 +1,151 @@
+:root {
+    --primary-green: #e8f5e9;    /* Light green background */
+    --border-green: #a5d6a7;     /* Soft green border */
+    --text-green: #2e7d32;       /* Dark green for text readability */
+    --hover-green: #c8e6c9;      /* Slightly darker green for hover */
+    --accent-pink: #ff0072;      /* Keeping the pink for the "New Chat" button */
+    --white: #ffffff;
+    --light-gray: #f4f7f6;
+}
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+}
+
+body { 
+    background-color: var(--light-gray); 
+    color: #333; 
+    line-height: 1.6;
+}
+
+/* Page View Logic */
+.view { min-height: 100vh; transition: opacity 0.3s ease; }
+.hidden { display: none !important; }
+
+/* Navbar */
+.navbar {
+    background: var(--white);
+    padding: 1.2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar h1 { font-size: 1.4rem; color: var(--text-green); }
+
+/* Search Area */
+.search-container {
+    padding: 2rem 5% 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+#search-input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid #eee;
+    border-radius: 30px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#search-input:focus { border-color: var(--border-green); }
+
+/* The 200 Button Grid */
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    padding: 1rem 5% 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* THE BUTTON UPDATE: Light Green & Text Fitting */
+.sop-card-btn {
+    background-color: var(--primary-green);
+    border: 1px solid var(--border-green);
+    color: var(--text-green);
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    
+    /* Centering Logic */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    /* Sizing Logic (Prevents Overflow) */
+    min-height: 90px;
+    width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.4;
+    
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.sop-card-btn:hover {
+    background-color: var(--hover-green);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Sub-page Design */
+.sub-page-content {
+    max-width: 800px;
+    margin: 60px auto;
+    background: var(--white);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+}
+
+#page-title {
+    margin-bottom: 20px;
+    color: var(--text-green);
+    font-size: 2rem;
+}
+
+.page-body {
+    text-align: left;
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 5px solid var(--border-green);
+    white-space: pre-line; /* This respects the line breaks in your JS */
+}
+
+/* Start New Chat Button */
+.chat-btn {
+    background: var(--accent-pink);
+    color: white;
+    border: none;
+    padding: 16px 45px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 40px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 0, 114, 0.3);
+}
+
+.chat-btn:hover {
+    background: #e60066;
+    transform: scale(1.05);
+    box-shadow:

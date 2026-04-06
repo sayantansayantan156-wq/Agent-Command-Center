@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Management Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="main-page" class="view">
+        <header class="navbar">
+            <h1>Agent Command Center</h1>
+            <br>
+            <h3>Developed by SAYANTAN ADHIKARY</h3>
+            <div class="stats">Total SOPs: 200</div>
+        </header>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search for a specific SOP button...">
+        </div>
+
+        <div id="button-grid" class="button-grid">
+            </div>
+    </div>
+
+    <div id="sub-page" class="view hidden">
+        <div class="sub-page-content">
+            <h2 id="page-title">Page Title</h2>
+            <div class="page-body">
+                <p>This is the professional workspace for the selected module. You can perform actions, view documents, and manage logs here.</p>
+                <div class="placeholder-box">Detailed SOP Content Loading...</div>
+            </div>
+            
+            <button id="new-chat-btn" class="chat-btn">Start New Chat</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
