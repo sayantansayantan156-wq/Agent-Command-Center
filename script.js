@@ -85,6 +85,7 @@ searchInput.addEventListener('input', (e) => {
         mainPage.classList.remove('hidden');
         window.scrollTo(0, 0);
     });
+    
 
     newChatBtn.onclick = () => window.history.back();
 });
